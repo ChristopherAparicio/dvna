@@ -1,0 +1,255 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "NodeJS DWNA",
+    "description": "Christopher NodeJS DWNA"
+  },
+  "host": "petstore.swagger.io",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/integer": {
+      "description": "get integer without protection",
+      "get": {
+        "operationId": "getInteger",
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"id",
+            "in":"query",
+            "type":"integer",
+            "format":"int32",
+            "required":true,
+            "multipleOf":2,
+            "min":0,
+            "exclusiveMinimum":true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Everything is good"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "/integer/shield": {
+      "description": "get integer without protection",
+      "get": {
+        "operationId": "getIntegerShield",
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"id",
+            "in":"query",
+            "type":"integer",
+            "format":"int32",
+            "required":true,
+            "multipleOf":2,
+            "min":0,
+            "exclusiveMinimum":true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Everything is good"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "/object/json": {
+      "description": "pets",
+      "put": {
+        "description": "Object",
+        "operationId": "objectJson",
+        "consumes": [
+          "application/json"
+        ],
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"object",
+            "in":"body",
+            "description": "Object",
+            "schema": {
+              "$ref": "#/components/schemas/dvnaObject"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Everything is good"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "/object/json/shield": {
+      "description": "pets",
+      "put": {
+        "description": "Object",
+        "operationId": "objectJsonShield",
+        "consumes": [
+          "application/json"
+        ],
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"object",
+            "in":"body",
+            "description": "Object",
+            "schema": {
+              "$ref": "#/components/schemas/dvnaObject"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Everything is good"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "/object/urlencoded": {
+      "description": "pets",
+      "put": {
+        "description": "Object",
+        "operationId": "objectJson",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"object",
+            "in":"body",
+            "description": "Object",
+            "schema": {
+              "$ref": "#/components/schemas/dvnaObject"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Everything is good"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "/object/urlencoded/shield": {
+      "description": "pets",
+      "put": {
+        "description": "Object",
+        "operationId": "objectUrlencodedShield",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"object",
+            "in":"body",
+            "description": "Object",
+            "schema": {
+              "$ref": "#/components/schemas/dvnaObject"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Everything is good"
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions":{
+    "definitions":{
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message":{
+            "type":"string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "dvnaObject":{
+        "type": "object",
+        "properties": {
+          "id":{
+            "type":"integer",
+            "format":"int32",
+            "multipleOf":2,
+            "min":0,
+            "exclusiveMinimum":true
+          },
+          "string":{
+            "type":"string",
+            "format":"string",
+            "minLength":5,
+            "maxLength":10
+          },
+          "alive":{
+            "type":"boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      }
+    }
+  }
+}

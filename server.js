@@ -73,5 +73,5 @@ app.get('/',function(req,res){
 });
 
 // Waiting Connection on the port
-app.listen(port);
+app.listen(process.env.PORT || port);
 console.log('Server set up on port : ' + port);

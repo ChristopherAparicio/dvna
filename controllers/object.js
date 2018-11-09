@@ -15,7 +15,7 @@ const isPositiveNumber = /^[0-9]+$/;
 router.put('/json/shield',function(req,res){
     // ID defined 
     if (req.body != undefined){
-        if (req.body.id != undefined && req.body.name != nil){
+        if (req.body.id != undefined && req.body.name != undefined){
             var id = req.body.id
             var name = req.body.name
             // ID Consistency 
@@ -24,34 +24,34 @@ router.put('/json/shield',function(req,res){
                     if (req.body.alive != undefined){
                         if(typeof req.body.alive === "boolean"){
                             if (Object.keys(req.body).length == 3) {
-                                res.sendStatus(200)
+                                res.status(200).json({message:"OK"})
                             } else {
-                                res.status(400).json([{Message:"additional properties present"}])   
+                                res.status(400).json({message:"additional properties present"})   
                             }
                         } else {
-                            res.status(400).json([{Message:"alive is not a boolean"}])   
+                            res.status(400).json({message:"alive is not a boolean"})   
                         }
                     } else {
                         // Is Undefined but not required
                         // Normally two properties
                         if (Object.keys(req.body).length == 2) {
-                            res.sendStatus(200)
+                            res.status(200).json({message:"OK"})
                         } else {
-                            res.status(400).json([{Message:"additional properties present"}])   
+                            res.status(400).json({message:"additional properties present"})   
                         }
                     }
                 } else{
-                    res.status(400).json([{Message:"name doesn't fit constraint"}])   
+                    res.status(400).json({message:"name doesn't fit constraint"})   
                 }
-                res.sendStatus(200)
+                res.status(200).json({message:"OK"})
             } else {
-                res.status(400).json([{Message:"ID doesn't fit constraint"}])
+                res.status(400).json({message:"ID doesn't fit constraint"})
             }
         } else {
-            res.status(400).json([{Message:"ID or Name is Undefined"}])
+            res.status(400).json({message:"ID or Name is Undefined"})
         }
     } else {
-        res.status(400).json([{Message:"Body undefined"}])
+        res.status(400).json({message:"Body undefined"})
     }
 });
 
@@ -59,7 +59,7 @@ router.put('/json/shield',function(req,res){
 router.put('/urlencoded/shield',function(req,res){
     // ID defined 
     if (req.body != undefined){
-        if (req.body.id != undefined && req.body.name != nil){
+        if (req.body.id != undefined && req.body.name != undefined){
             var id = req.body.id
             var name = req.body.name
             // ID Consistency 
@@ -68,34 +68,34 @@ router.put('/urlencoded/shield',function(req,res){
                     if (req.body.alive != undefined){
                         if(typeof req.body.alive === "boolean"){
                             if (Object.keys(req.body).length == 3) {
-                                res.sendStatus(200)
+                                res.status(200).json({message:"OK"})
                             } else {
-                                res.status(400).json([{Message:"additional properties present"}])   
+                                res.status(400).json({message:"additional properties present"})   
                             }
                         } else {
-                            res.status(400).json([{Message:"alive is not a boolean"}])   
+                            res.status(400).json({message:"alive is not a boolean"})   
                         }
                     } else {
                         // Is Undefined but not required
                         // Normally two properties
                         if (Object.keys(req.body).length == 2) {
-                            res.sendStatus(200)
+                            res.status(200).json({message:"OK"})
                         } else {
-                            res.status(400).json([{Message:"additional properties present"}])   
+                            res.status(400).json({message:"additional properties present"})   
                         }
                     }
                 } else{
-                    res.status(400).json([{Message:"name doesn't fit constraint"}])   
+                    res.status(400).json({message:"name doesn't fit constraint"})   
                 }
                 res.sendStatus(200)
             } else {
-                res.status(400).json([{Message:"ID doesn't fit constraint"}])
+                res.status(400).json({message:"ID doesn't fit constraint"})
             }
         } else {
-            res.status(400).json([{Message:"ID or Name is Undefined"}])
+            res.status(400).json({message:"ID or Name is Undefined"})
         }
     } else {
-        res.status(400).json([{Message:"Body undefined"}])
+        res.status(400).json({message:"Body undefined"})
     }
 });
 
@@ -111,16 +111,30 @@ router.put('/json',function(req,res){
     if (req.body != undefined){
         var body = req.body
         if (body.id != undefined){
-            if (!isNaN(parseInt(id)) && isPositiveNumber.test(id) && parseInt(id)> 0 && parseInt< (Math.pow(2,31))){
-                res.sendStatus(200)
+            var id = body.id
+            if (!isNaN(parseInt(id))){
+                if (isPositiveNumber.test(id)){
+                    if(id> 0){
+                        if(id < (Math.pow(2,31))){
+                            res.sendStatus(200)
+                        } else {
+                            res.status(400).json({message:"ID overflow"})
+                        }
+                    } else {
+                        res.status(400).json({message:"ID negative"})
+                    }
+                } else {
+                    res.status(400).json({message:"ID negative"})
+                }
             } else {
-                res.status(400).json([{Message:"ID doesn't fit constraint"}])
+                res.status(400).json({message:"ID doesn't fit constraint"})
             }
         } else {
-            res.status(400).json([{Message:"ID undefined"}])
+            console.log(body)
+            res.status(400).json({message:"ID undefined"})
         }
     } else {
-        res.status(400).json([{Message:"Body undefined"}])
+        res.status(400).json({message:"Body undefined"})
     }
 });
 
@@ -129,16 +143,17 @@ router.put('/urlencoded',function(req,res){
     if (req.body != undefined){
         var body = req.body
         if (body.id != undefined){
+            var id = body.id
             if (!isNaN(parseInt(id)) && isPositiveNumber.test(id) && parseInt(id)> 0 && parseInt< (Math.pow(2,31))){
                 res.sendStatus(200)
             } else {
-                res.status(400).json([{Message:"ID doesn't fit constraint"}])
+                res.status(400).json({message:"ID doesn't fit constraint"})
             }
         } else {
-            res.status(400).json([{Message:"ID undefined"}])
+            res.status(400).json({message:"ID undefined"})
         }
     } else {
-        res.status(400).json([{Message:"Body undefined"}])
+        res.status(400).json({message:"Body undefined"})
     }
 });
 

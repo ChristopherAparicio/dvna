@@ -15,9 +15,11 @@ const issuer = "http://localhost:" + port;
 //const bcryptSalt = 10;
 
 /* Routers */
+var boolean = require('./controllers/boolean');
+var string = require('./controllers/string');
 var integer = require('./controllers/integer');
 var object = require('./controllers/object'); 
-
+var requiredParameters = require('./controllers/requiredParameters'); 
 /* Database connection */
 
 /* Middleware */
@@ -64,8 +66,11 @@ app.get('/timeout',function(req,res){
   console.log("Timeout in action")
 })
 
+app.use('/boolean',boolean)
+app.use('/string',string)
 app.use('/integer',integer)
 app.use('/object',object)
+app.use('/requiredparameters',requiredParameters)
 
 app.get('/',function(req,res){
   console.log('Somebody request /');

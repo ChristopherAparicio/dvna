@@ -11,6 +11,134 @@
     "http"
   ],
   "paths": {
+    "/boolean": {
+      "description": "get integer without protection",
+      "get": {
+        "operationId": "getInteger",
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"boolean",
+            "in":"query",
+            "type":"boolean",
+            "required":true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "/boolean/shield": {
+      "description": "get integer without protection",
+      "get": {
+        "operationId": "getInteger",
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"boolean",
+            "in":"query",
+            "type":"boolean",
+            "required":true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "/string": {
+      "description": "get integer without protection",
+      "get": {
+        "operationId": "getInteger",
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"string",
+            "in":"query",
+            "type":"string",
+            "required":true,
+            "minLength":5,
+            "maxLength":10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "/string/shield": {
+      "description": "get integer without protection",
+      "get": {
+        "operationId": "getInteger",
+        "produces":[
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name":"string",
+            "in":"query",
+            "type":"string",
+            "required":true,
+            "minLength":5,
+            "maxLength":10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
     "/integer": {
       "description": "get integer without protection",
       "get": {
@@ -26,13 +154,16 @@
             "format":"int32",
             "required":true,
             "multipleOf":2,
-            "min":0,
+            "minimum":0,
             "exclusiveMinimum":true
           }
         ],
         "responses": {
           "200": {
-            "description": "Everything is good"
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
           },
           "default": {
             "description": "unexpected error",
@@ -58,13 +189,16 @@
             "format":"int32",
             "required":true,
             "multipleOf":2,
-            "min":0,
+            "minimum":0,
             "exclusiveMinimum":true
           }
         ],
         "responses": {
           "200": {
-            "description": "Everything is good"
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
           },
           "default": {
             "description": "unexpected error",
@@ -98,7 +232,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Everything is good"
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
           },
           "default": {
             "description": "unexpected error",
@@ -132,7 +269,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Everything is good"
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
           },
           "default": {
             "description": "unexpected error",
@@ -156,17 +296,35 @@
         ],
         "parameters": [
           {
-            "name":"object",
-            "in":"body",
-            "description": "Object",
-            "schema": {
-              "$ref": "#/components/schemas/dvnaObject"
-            }
+              "name":"id",
+              "in":"formData",
+              "type":"integer",
+              "format":"int32",
+              "multipleOf":2,
+              "minimum":0,
+              "exclusiveMinimum":true
+          },
+          {
+            "name":"name",
+            "in":"formData",
+            "type":"string",
+            "format":"string",
+            "minLength":5,
+            "maxLength":10
+          },
+          {
+            "name":"alive",
+            "in":"formData",
+            "type":"boolean"
           }
+          
         ],
         "responses": {
           "200": {
-            "description": "Everything is good"
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
           },
           "default": {
             "description": "unexpected error",
@@ -190,17 +348,34 @@
         ],
         "parameters": [
           {
-            "name":"object",
-            "in":"body",
-            "description": "Object",
-            "schema": {
-              "$ref": "#/components/schemas/dvnaObject"
-            }
+              "name":"id",
+              "in":"formData",
+              "type":"integer",
+              "format":"int32",
+              "multipleOf":2,
+              "minimum":0,
+              "exclusiveMinimum":true
+          },
+          {
+            "name":"name",
+            "in":"formData",
+            "type":"string",
+            "format":"string",
+            "minLength":5,
+            "maxLength":10
+          },
+          {
+            "name":"alive",
+            "in":"formData",
+            "type":"boolean"
           }
         ],
         "responses": {
           "200": {
-            "description": "Everything is good"
+            "description": "no error",
+            "schema": {
+              "$ref": "#/components/schemas/NoError"
+            }
           },
           "default": {
             "description": "unexpected error",
@@ -213,43 +388,52 @@
     }
   },
   "definitions":{
-    "definitions":{
-      "Error": {
-        "type": "object",
-        "properties": {
-          "message":{
-            "type":"string"
-          }
-        },
-        "required": [
-          "message"
-        ]
+    "NoError": {
+      "type": "object",
+      "properties": {
+        "message":{
+          "type":"string"
+        }
       },
-      "dvnaObject":{
-        "type": "object",
-        "properties": {
-          "id":{
-            "type":"integer",
-            "format":"int32",
-            "multipleOf":2,
-            "min":0,
-            "exclusiveMinimum":true
-          },
-          "string":{
-            "type":"string",
-            "format":"string",
-            "minLength":5,
-            "maxLength":10
-          },
-          "alive":{
-            "type":"boolean"
-          }
+      "required": [
+        "message"
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "message":{
+          "type":"string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "dvnaObject":{
+      "type": "object",
+      "properties": {
+        "id":{
+          "type":"integer",
+          "format":"int32",
+          "multipleOf":2,
+          "minimum":0,
+          "exclusiveMinimum":true
         },
-        "required": [
-          "id",
-          "name"
-        ]
-      }
+        "name":{
+          "type":"string",
+          "format":"string",
+          "minLength":5,
+          "maxLength":10
+        },
+        "alive":{
+          "type":"boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
     }
   }
 }

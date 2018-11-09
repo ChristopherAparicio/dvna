@@ -4,46 +4,49 @@ const isPositiveNumber = /^[0-9]+$/;
 
 // Query : id int 32 (id > 0 && id < 2^31) exclusive min : true, multiple of 2
 router.get('/shield',function(req,res){
-    // Id TEST
+    // Integer test
     if (req.query.id != undefined){
         var id = req.query.id
+        console.log("integer/shield : ",id)
         if (!isNaN(parseInt(id))){
             if (isPositiveNumber.test(id)){
                 if (parseInt(id)> 0){
                     if (parseInt< (Math.pow(2,31))){
                         if (id%2 == 0){
-                            res.sendStatus(200)
+                            res.status(200).json({message:"OK"})
                         } else {
-                            res.status(400).json([{Message:"Not a multiple of 2"}])
+                            res.status(400).json({message:"Not a multiple of 2"})
                         }
                     } else{
-                        res.status(400).json([{Message:"Overflow upper limit int32"}])
+                        res.status(400).json({message:"Overflow upper limit int32"})
                     }
                 } else {
-                    res.status(400).json([{Message:"ID isn't a strictly positive number"}])
+                    res.status(400).json({message:"ID isn't a strictly positive number"})
                 }
             } else {
-                res.status(400).json([{Message:"ID isn't a positive number"}])
+                res.status(400).json({message:"ID isn't a positive number"})
             }
         } else {
-            res.status(400).json([{Message:"ID isn't a number"}])
+            res.status(400).json({message:"ID isn't a number"})
         }
     } else {
-        res.status(400).json([{Message:"ID Undefined"}])
+        res.status(400).json({message:"ID Undefined"})
     }
 });
 
 router.get('/',function(req,res){
-     // Id TEST
+     // Integer test
      if (req.query.id != undefined){
-         if (!isNaN(req.query.id)){
-            res.sendStatus(200)
+         var id = req.query.id
+         console.log("integer/ : ",id)
+         if (!isNaN(id)){
+            res.status(200).json({message:"OK"})
          } else {
-            res.status(400).json([{Message:"ID is not a number"}])
+            res.status(400).json({message:"ID is not a number"})
          }
 
     } else {
-        res.status(400).json([{Message:"ID Undefined"}])
+        res.status(400).json({message:"ID Undefined"})
     }
 });
 
